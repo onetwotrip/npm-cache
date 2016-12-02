@@ -1,3 +1,7 @@
+0.10.0
+-----
+add typings capabilities
+
 0.9.0
 -----
 launching npm run prepublish after installing cached dependencies if they exist

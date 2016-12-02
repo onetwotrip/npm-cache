@@ -235,7 +235,7 @@ CacheDependencyManager.prototype.installCachedDependencies = function (cachePath
         .on('end', onEnd)
         .pipe(fstream.Writer(targetPath));
     } else {
-      var cachePathSymLink = path.resolve(cachePath, 'node_modules')
+      var cachePathSymLink = path.resolve(cachePath, this.config.installDirectory)
       this.cacheLogInfo('creating symlink ' + installDirectory + ' to point to ' + cachePathSymLink);
       //'dir' requires admin rights on windows, junction works. This argument is ignored by other platforms
       fs.symlinkSync(cachePathSymLink, installDirectory, 'junction')

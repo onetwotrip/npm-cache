@@ -139,13 +139,13 @@ CacheDependencyManager.prototype.archiveDependencies = function (cacheDirectory,
 
       //some modules might need to find files based on a relative path which can be a problem, so we need to create a reverse symlink
       if (self.config.reverseSymlink) {
-        var reverseCacheSymLink = path.resolve(cachePath, '../', self.config.reverseSymlink)
+        var reverseCacheSymLink = path.resolve(cachePath, '../', '../', self.config.reverseSymlink)
         var projectDirectory = path.resolve(installedDirectory, '../')
         if (fs.existsSync(reverseCacheSymLink) && fs.lstatSync(reverseCacheSymLink).isSymbolicLink()) {
           self.cacheLogInfo(reverseCacheSymLink + ' exists already and is a symlink - removing it');
           fs.removeSync(reverseCacheSymLink);
         }
-        self.cacheLogInfo('creating reverse symlink ' + reverseCacheSymLink + ' to point to ' + projectDirectory);
+        self.cacheLogInfo('creating reverse symlink after installing fresh dependencies ' + reverseCacheSymLink + ' to point to ' + projectDirectory);
         fs.symlinkSync(projectDirectory, reverseCacheSymLink, 'junction')
       }
     } else {
@@ -248,7 +248,7 @@ CacheDependencyManager.prototype.installCachedDependencies = function (cachePath
           this.cacheLogInfo(reverseCacheSymLink + ' exists already and is a symlink - removing it');
           fs.removeSync(reverseCacheSymLink);
         }
-        this.cacheLogInfo('creating reverse symlink ' + reverseCacheSymLink + ' to point to ' + projectDirectory);
+        this.cacheLogInfo('creating reverse symlink after installing cached dependencies ' + reverseCacheSymLink + ' to point to ' + projectDirectory);
         fs.symlinkSync(projectDirectory, reverseCacheSymLink, 'junction')
       }
 

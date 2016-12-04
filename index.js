@@ -14,6 +14,9 @@ var CacheDependencyManager = require('./cacheDependencyManagers/cacheDependencyM
 
 // Main entry point for npm-cache
 var main = function () {
+  //add node_modules/.bin to PATH
+  process.env['PATH'] = process.env['PATH'] + ";" + path.resolve(process.cwd(), 'node_modules', '.bin');
+
   // Parse CLI Args
   parser.command('install')
     .callback(installDependencies)

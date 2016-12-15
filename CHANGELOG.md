@@ -1,3 +1,8 @@
+0.10.2
+-----
+Delete non archive cache directory if it has no 'node_modules' or similar folder inside
+Delete non archive cache directory if the 'node_modules' or similar folder is empty
+
 0.10.1
 -----
 add cwd/node_modules/.bin to PATH

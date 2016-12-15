@@ -290,11 +290,35 @@ CacheDependencyManager.prototype.loadDependencies = function (callback) {
   var cacheDirectory = path.resolve(this.config.cacheDirectory, this.config.cliName, this.config.getCliVersion());
   var cachePathArchive = path.resolve(cacheDirectory, hash + '.tar.gz');
   var cachePathNotArchived = path.resolve(cacheDirectory, hash);
-
-  // Check if local cache of dependencies exists
   var cacheArchiveExists = fs.existsSync(cachePathArchive);
   var cacheNotArchivedExists = fs.existsSync(cachePathNotArchived);
-  if (!this.config.forceRefresh && ((!this.config.noArchive && cacheArchiveExists) || (this.config.noArchive && cacheNotArchivedExists))) {
+
+  // Check for empty cached directory
+  var cachePathNotArchived_installFolder = path.resolve(cachePathNotArchived, this.config.installDirectory);
+  var cachePathNotArchived_installFolderExists = fs.existsSync(cachePathNotArchived_installFolder);
+  if (cacheNotArchivedExists) {
+    //not existing 'node_modules' or similar folder
+    if (!cachePathNotArchived_installFolderExists) {
+      this.cacheLogInfo('clearing ' + cachePathNotArchived + ' because ' + cachePathNotArchived_installFolder + ' doesnt exists')
+      fs.removeSync(cachePathNotArchived)
+    }
+    //empty 'node_modules' or similar folder
+    else if (fs.readdirSync(cachePathNotArchived_installFolder).length === 0) {
+      this.cacheLogInfo('clearing ' + cachePathNotArchived + ' because ' + cachePathNotArchived_installFolder + ' contains nothing')
+      fs.removeSync(cachePathNotArchived)
+    }
+  }
+
+  // updating existence of cache directories
+  cacheNotArchivedExists = fs.existsSync(cachePathNotArchived);
+
+  // Check if local cache of dependencies exists
+  if (  !this.config.forceRefresh &&
+        (
+          (!this.config.noArchive && cacheArchiveExists) ||
+          (this.config.noArchive && cacheNotArchivedExists)
+        )
+  ) {
     this.cacheLogInfo('cache exists');
 
     // Try to retrieve cached dependencies

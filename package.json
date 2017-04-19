@@ -1,11 +1,11 @@
 {
-  "name": "npm-cache",
-  "version": "0.6.5",
+  "name": "@dashlane/dep-cache",
+  "version": "0.10.2",
   "description": "cache dependency manager installs to local machine - fork of npm-cache by swaraj - respects commandline args and deals with npm --production args etc.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Dashlane/npm-cache.git"
+    "url": "git+ssh://git@github.com/Dashlane/npm-cache.git"
   },
   "keywords": [
     "npm",
@@ -14,9 +14,15 @@
     "bower",
     "jspm",
     "composer",
-    "local"
+    "local",
+    "dep-cache",
+    "dependencies",
+    "cache",
+    "yarn",
+    "typings",
+    "symlink"
   ],
-  "author": "swaraj",
+  "author": "Dashlane",
   "contributors": [
     {
       "name": "Aaron Nordyke",
@@ -33,9 +39,12 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/swarajban/npm-cache/issues"
+    "url": "https://github.com/Dashlane/npm-cache/issues"
   },
-  "homepage": "https://github.com/swarajban/npm-cache",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/Dashlane/npm-cache",
   "dependencies": {
     "async": "2.1.4",
     "cli-color": "^1.1.0",

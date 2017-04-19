@@ -1,6 +1,6 @@
 {
   "name": "@dashlane/dep-cache",
-  "version": "0.10.2",
+  "version": "0.10.7",
   "description": "cache dependency manager installs to local machine - fork of npm-cache by swaraj - respects commandline args and deals with npm --production args etc.",
   "main": "index.js",
   "repository": {
@@ -63,6 +63,6 @@
   },
   "preferGlobal": true,
   "bin": {
-    "npm-cache": "index.js"
+    "dep-cache": "index.js"
   }
 }

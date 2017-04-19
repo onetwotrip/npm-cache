@@ -1,3 +1,7 @@
+0.10.3
+-----
+fixing name issue when installing package
+
 0.10.2
 -----
 Delete non archive cache directory if it has no 'node_modules' or similar folder inside

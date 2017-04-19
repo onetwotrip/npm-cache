@@ -1,3 +1,7 @@
+0.10.7
+-----
+fixing bin path, it was still npm-cache
+
 0.10.3
 -----
 fixing name issue when installing package

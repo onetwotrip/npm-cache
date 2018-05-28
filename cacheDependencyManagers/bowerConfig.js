@@ -3,7 +3,7 @@
 var path = require('path');
 var shell = require('shelljs');
 var fs = require('fs');
-var md5 = require('md5');
+var md5 = require('../util/md5');
 var logger = require('../util/logger');
 var options = {};
 
@@ -29,7 +29,7 @@ function getFileHash(filePath) {
     devDependencies: json.devDependencies,
     overrides: json.overrides
   }));
-};
+}
 
 function setOptions(opts) {
 	if (!opts) {
